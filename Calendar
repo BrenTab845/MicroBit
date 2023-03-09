@@ -1,0 +1,100 @@
+# FUNCTIONS
+def leap_year(y):
+    leap = y % 4
+    fourreq = y % 400
+    hundreq = y % 100
+    if leap == 0:
+        if fourreq == 0 or hundreq != 0:
+            return 1 
+        else:
+            return 0 
+    else:
+        return 0
+def number_of_days(m, y = 0):
+    if m == 1:
+        return 31
+    elif m == 2:
+        leapday1 = leap_year(y)
+        return 28 + leapday1
+    elif m == 3:
+        return 31
+    elif m == 4:
+        return 30
+    elif m == 5:
+        return 31
+    elif m == 6:
+        return 30
+    elif m == 7:
+        return 31 
+    elif m == 8:
+        return 31
+    elif m == 9:
+        return 30
+    elif m == 10:
+        return 31 
+    elif m == 11:
+        return 30
+    elif m == 12:
+        return 31 
+    else:
+        return "Not a month"
+def days_passed(d, m, y):
+    d = d - 1
+    if m == 1:
+        passeddays = d 
+        return passeddays
+    elif m == 2:
+        passeddays = d + 31 
+        return passeddays
+    elif m == 3:
+        passeddays = d + 31 + 28 + leap_year(y) 
+        return passeddays
+    elif m == 4:
+        passeddays = d + 31 + 28 + leap_year(y) + 31 
+        return passeddays
+    elif m == 5:
+        passeddays = d + 31 + 28 + leap_year(y) + 31 + 30 
+        return passeddays
+    elif m == 6:
+        passeddays = d + 31 + 28 + leap_year(y) + 31 + 30 + 31 
+        return passeddays
+    elif m == 7:
+        passeddays = d + 31 + 28 + leap_year(y) + 31 + 30 + 31 + 30 
+        return passeddays
+    elif m == 8:
+        passeddays = d + 31 + 28 + leap_year(y) + 31 + 30 + 31 + 30 + 31
+        return passeddays
+    elif m == 9:
+        passeddays = d + 31 + 28 + leap_year(y) + 31 + 30 + 31 + 30 + 31 + 31 
+        return passeddays
+    elif m == 10:
+        passeddays = d + 31 + 28 + leap_year(y) + 31 + 30 + 31 + 30 + 31 + 31 + 30
+        return passeddays
+    elif m == 11:
+        passeddays = d + 31 + 28 + leap_year(y) + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 
+        return passeddays
+    elif m == 12:
+        passeddays = d + 31 + 28 + leap_year(y) + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30
+        return passeddays
+    else:
+        return "Not a month"
+        
+# MAIN
+
+day = int(input("Please enter a date\nDay: "))
+month = int(input("Month: "))
+year = int(input("Year: "))
+menu = int(input("Menu: \n1) Calculate the number of days in the given month. \n2) Calculate the number of days passed in the given year.\n"))
+if menu == 2:
+    if day > 0 and day <= 31 and month <= 12 and month > 0:
+        passeddays = days_passed(day, month, year)
+        print(passeddays)
+    elif day > 31 or day < 1:
+        print("Invalid Day")
+    elif month < 0 or month > 12:
+        print("Invalid Month")
+elif menu == 1:
+    calmonth=number_of_days(month,year)
+    print(calmonth)
+else:
+    print("Invalid Choice")
