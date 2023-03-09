@@ -1,0 +1,114 @@
+import simplegui
+#GlobalVariable
+x = 175
+y = 125
+#(paper1)
+a = 150
+#(paper2)
+b = 400
+
+s = 300
+t = 395
+
+def draw_handler(canvas):
+    # Draw Here!
+    global x
+    global y
+    #person1Face
+    canvas.draw_circle((150,130), 75, 5, "black")
+    #person1Eyes
+    canvas.draw_circle((x-25,y), 15, 5, "black")
+    canvas.draw_circle((x+25,y), 15, 5, "black")
+    #EyesMoving
+    if x != 150:
+        x = x - 1
+        y = y - 1
+
+    canvas.draw_circle((150,170), 20, 5, "black")
+    canvas.draw_polygon([(125,170),(175,170),(175,145),(125,145)], 1, "lightgreen", "lightgreen")
+    for i in range(100,1,200):
+        canvas.draw_circle(150,150), 1, "lightgreen"
+    #torso/legs
+    canvas.draw_line((150,205), (150, 205), 5, "black")
+    canvas.draw_line((150,305), (125, 365), 5, "black")
+    canvas.draw_line((150,305), (175, 365), 5, "black")
+    #desk
+    canvas.draw_polygon([(90,205), (225,205), (230,305), (95, 305)], 1, "black", "brown")
+    canvas.draw_line((90,205),(90, 365), 2.5, "black")
+    canvas.draw_line((225,305), (225, 365), 2.5, "black")
+    canvas.draw_line((230,305), (230, 365), 2.5, "black")
+    canvas.draw_line((95,305), (95, 365), 2.5, "black")
+    #paper
+    global a
+    canvas.draw_polygon([(120,215), (195,215), (195,295),(120, 295)], 1.25, "black", "white")
+    canvas.draw_line((130,230), (a, 230), 2.5, "black")
+    for i in range(140,180,5):
+        canvas.draw_line((130,i + 95), (a, i + 95), 1.5, "black")
+    canvas.draw_text(("Test"), (150, 220), 7.5, "black")
+    #a=150
+    a = a + 0.25
+    if a >= 185:
+        a = 185
+    if a == 185:
+        canvas.draw_text(("F"), (145, 265), 60, "red")
+        canvas.draw_text(("Test"), (400, 220), 7.5, "black")
+        
+    #person2Face
+    canvas.draw_circle((400,130), 75, 5, "black")
+    #person2Eyes (Change y maybe)
+    canvas.draw_circle((375,125), 15, 5, "black")
+    canvas.draw_circle((425,125), 15, 5, "black")\
+    #Smile
+    canvas.draw_circle((400,170), 20, 5, "black")
+    canvas.draw_polygon([(375,170),(425,170),(425,145),(375,145)], 1, "lightgreen", "lightgreen")
+    #torso/legs
+    canvas.draw_line((400,205), (400, 305), 5, "black")
+    canvas.draw_line((400,305), (375, 365), 5, "black")
+    canvas.draw_line((400,305), (425, 365), 5, "black")
+    #desk
+    canvas.draw_polygon([(340,205), (475,205), (480,305), (345, 305)], 1, "black", "brown")
+    canvas.draw_line((340,205), (340, 365), 2.5, "black")
+    canvas.draw_line((475,305), (475, 365), 2.5, "black")
+    canvas.draw_line((480,305), (480, 365), 2.5, "black")
+    canvas.draw_line((345,305), (345, 365), 2.5, "black")
+    #paper
+    global b
+    b = b + 1
+    canvas.draw_polygon([(370,215), (445,215), (445,295),(370, 295)], 1.25, "black", "white")
+   
+    canvas.draw_line((380,230), (b, 230), 2.5, "black")
+    for i in range(140,180,5):
+        canvas.draw_line((380,i + 95), (b, i + 95), 1.5, "black")
+    if b >= 435:
+        b = 435
+    #USED FOR TEXT THINGS
+    canvas.draw_text(("Test"), (400, 220), 7.5, "black")
+    #Use if statement to change scenes
+    global s
+    global t
+    #teacher
+    canvas.draw_circle((300,t+10), 75, 5, "black")
+    #eyes
+    canvas.draw_circle((s-25,t), 15, 5, "black")
+    canvas.draw_circle((s+25,t), 15, 5, "black")
+    #smile
+    canvas.draw_circle((300,t+45), 20, 5, "black")
+    canvas.draw_polygon([(275,t+20),(325,t+20),(325,t+45),(275,t+45)], 1, "lightgreen", "lightgreen")
+    #s = 300
+    #t = 395
+    if s != 275:
+        s = s - 1
+    if t != 200:
+        t = t - 3
+    #arms
+    canvas.draw_line((300, t+95), (260, t+105), 5, "black")
+    canvas.draw_line((300, t+95), (340, t+105), 5, "black")
+    #torso/legs
+    canvas.draw_line((300,t+85), (300, t+150), 5, "black")
+    canvas.draw_line((300,t+150), (275, t+200), 5, "black")
+    canvas.draw_line((300,t+150), (325, t+200), 5, "black")
+    
+frame = simplegui.create_frame('Testing', 600, 600)
+frame.set_canvas_background("lightgreen")
+frame.set_draw_handler(draw_handler)
+frame.start()
